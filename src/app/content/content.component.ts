@@ -11,6 +11,7 @@ export class ContentComponent implements OnInit {
   categories: any;
   filteredData: any[] = [];
   searchInput: string = '';
+  inputValue: string = '';
 
   constructor(private dataService: DataService) {
     this.data = this.dataService.data;
@@ -21,19 +22,31 @@ export class ContentComponent implements OnInit {
       this.categories = categories;
       this.filterData();
     });
+    this.showAllProducts();
+    this.dataService.inputValue$.subscribe(value => {
+      this.inputValue = value;
+      this.searchInput = this.inputValue;
+      this.filterData();
+    });
   }
 
- filterData() {
-  this.filteredData = this.data.filter(item => {
-    const hasCategory = this.hasCategory(item.category.toLowerCase());
-    const includesSearchInput = item.title.toLowerCase().includes(this.searchInput.toLowerCase());
-    return hasCategory && includesSearchInput;
-  });
-}
+  filterData() {
+    if (this.searchInput === '') {
+      this.filteredData = this.data;
+    } else {
+      this.filteredData = this.data.filter(item => {
+        const hasCategory = this.hasCategory(item.category.toLowerCase());
+        const includesSearchInput = item.title.toLowerCase().includes(this.searchInput.toLowerCase());
+        return hasCategory && includesSearchInput;
+      });
+    }
+  }
 
   hasCategory(category: string): boolean {
     return this.categories && this.categories.includes(category);
   }
-  
 
+  showAllProducts() {
+    this.filteredData = this.data;
+  }
 }

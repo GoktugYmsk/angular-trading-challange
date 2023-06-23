@@ -248,20 +248,24 @@ export class DataService {
     }
   ]
   private selectedCategories = new Subject<string>();
+  private inputValueSubject = new Subject<string>();
+  public inputValue$ = this.inputValueSubject.asObservable();
 
   public categories$ = this.selectedCategories.asObservable();
 
 
   constructor() { }
 
-  // Bu yöntemle seçili kategoriye göre filtrelenmiş veri listesini döndür
+
   get filteredData(): any[] {
-    // Burada filtreleme işlemini gerçekleştirin ve filtrelenmiş veri listesini döndürün
-    // Örneğin, this.data üzerinde bir filtreleme işlemi yapabilirsiniz
-    // Örnek olarak:
-    // return this.data.filter(item => item.category === this.selectedCategory);
     return this.data;
   }
+
+
+  setInputValue(value: string) {
+    this.inputValueSubject.next(value);
+  }
+
 
   onCategoryClick(optionProduct: any) {
     this.selectedCategories.next(optionProduct)
