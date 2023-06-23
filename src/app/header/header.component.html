@@ -1,1 +1,27 @@
-<p>header works!</p>
+<div class="header-container">
+    <div class="container-header__top">
+        <p>Sell ​​on Pinsoft</p>
+        <p>Free Shipping for Shopping Over 100 TL!</p>
+        <div class="header-container__top-rigth__info">
+            <ul>
+                <li>Campaigns</li>
+                <li>Order Tracking</li>
+                <li>Help and Support</li>
+                <li>Brands</li>
+            </ul>
+        </div>
+    </div>
+    <div class="header-container__lower">
+        <img [src]="logo" />
+        <div class="header-container__input-group">
+            <input placeholder="Search" #inputRef type="text" class="form-control"
+                aria-label="Dollar amount (with dot and two decimal places)" />
+            <span class="input-group-text">
+            </span>
+        </div>
+
+        <div class="header-container__basket-group">
+            basket
+        </div>
+    </div>
+</div>
