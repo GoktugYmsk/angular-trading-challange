@@ -1,0 +1,99 @@
+.container-basket {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 600px;
+    height: 100vh;
+    padding: 20px;
+    z-index: 4;
+    background: white;
+
+    .container-basket__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-around !important;
+
+        .basket-close {
+            margin-left: 320px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    }
+
+    .basket-modal__products {
+        display: flex;
+
+        .basket-modal__products-info {
+            display: flex;
+            margin-left: 20px;
+            min-width: 380px;
+            max-width: 380px;
+            flex-direction: column;
+        }
+
+        .basket-modal__list-icon {
+            cursor: pointer;
+            margin-top: 40px;
+            font-size: 25px;
+            z-index: 2;
+        }
+    }
+
+    .container-basket__box {
+        overflow: auto;
+        height: 620px;
+    }
+
+    .basket-modal__list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 30px;
+        height: 220px;
+        padding: 10px;
+
+        .basket-modal__products-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 120px;
+            border: 1px dashed black;
+
+            img {
+
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        input{
+            margin-right: 225px;
+            width: 40px;
+        }
+    }
+
+    .basket__total-price {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-around !important;
+        position: absolute;
+        bottom: 20px;
+        color: white;
+        background: rgb(11, 79, 214);
+
+        h3 {
+            font-weight: 600;
+        }
+    }
+    .basket-empty{
+        display: flex;
+        top: 300px;
+        left: 250px;
+        position: absolute;
+    }
+}
