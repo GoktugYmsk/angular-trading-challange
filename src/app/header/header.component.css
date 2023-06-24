@@ -58,3 +58,37 @@
 
     cursor: pointer;
 }
+
+/* HEADER-BASKET */
+
+
+.header__basket {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    height: 60px;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.header__count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: 35px;
+    bottom: 15px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+}
+
+.header__icon {
+    color: black;
+    cursor: pointer;
+    font-size: 30px;
+}

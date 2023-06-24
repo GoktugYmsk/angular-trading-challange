@@ -1,0 +1,16 @@
+.container-sideBar {
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-left: 20px;
+    background: red;
+}
+.container-sideBar__box{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+.container-sideBar p{
+    display: flex;
+    cursor: pointer;
+}

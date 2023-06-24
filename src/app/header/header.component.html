@@ -1,28 +1,29 @@
 <div class="header-container">
-    <div class="container-header__top">
-      <p>Sell ​​on Pinsoft</p>
-      <p>Free Shipping for Shopping Over 100 TL!</p>
-      <div class="header-container__top-rigth__info">
-        <ul>
-          <li>Campaigns</li>
-          <li>Order Tracking</li>
-          <li>Help and Support</li>
-          <li>Brands</li>
-        </ul>
-      </div>
+  <div class="container-header__top">
+    <p>Sell ​​on Pinsoft</p>
+    <p>Free Shipping for Shopping Over 100 TL!</p>
+    <div class="header-container__top-rigth__info">
+      <ul>
+        <li>Campaigns</li>
+        <li>Order Tracking</li>
+        <li>Help and Support</li>
+        <li>Brands</li>
+      </ul>
     </div>
-    <div class="header-container__lower">
-      <img [src]="logo" />
-      <div class="header-container__input-group">
-        <input type="text" [(ngModel)]="searchInput" (input)="onInputChange()" placeholder="Search..."
-          aria-label="Dollar amount (with dot and two decimal places)" />
-        <span class="input-group-text">
-        </span>
-      </div>
-  
-      <div class="header-container__basket-group">
-        basket
+  </div>
+  <div class="header-container__lower">
+    <img [src]="logo" />
+    <div class="header-container__input-group">
+      <input type="text" [(ngModel)]="searchInput" (input)="onInputChange()" placeholder="Search..."
+        aria-label="Dollar amount (with dot and two decimal places)" />
+      <span class="input-group-text">
+      </span>
+    </div>
+    <div class="header-container__basket-group">
+      <div class="header__basket">
+        <p class="header__count">10</p>
+        <i class="fa-solid fa-basket-shopping header__icon"></i>
       </div>
     </div>
   </div>
-  
+</div>

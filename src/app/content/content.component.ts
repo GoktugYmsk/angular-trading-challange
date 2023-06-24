@@ -11,6 +11,7 @@ export class ContentComponent implements OnInit {
   categories: any;
   productFilter: any[] = [];
   inputValue: string = '';
+  selectedItems: string[] = [];
 
   constructor(private dataService: DataService) {
     this.data = this.dataService.data;
@@ -26,13 +27,11 @@ export class ContentComponent implements OnInit {
       this.filterData();
     });
 
-
     this.filterData();
   }
 
   filterData() {
     if (!this.categories && !this.inputValue) {
-
       this.productFilter = this.data;
       return;
     }
@@ -46,5 +45,22 @@ export class ContentComponent implements OnInit {
       }
       return true;
     });
+  }
+
+  addToBasket(productId: string) {
+    if (!this.selectedItems.includes(productId)) {
+      this.selectedItems.push(productId);
+    }
+  }
+
+  removeFromBasket(productId: string) {
+    const index = this.selectedItems.indexOf(productId);
+    if (index !== -1) {
+      this.selectedItems.splice(index, 1);
+    }
+  }
+
+  isItemInBasket(productId: string): boolean {
+    return this.selectedItems.includes(productId);
   }
 }
