@@ -1,6 +1,6 @@
 <div class="content-container">
   <div class="content-container__box">
-    <div class="content-container__box-list" *ngFor="let item of filteredData">
+    <div class="content-container__box-list" *ngFor="let item of productFilter">
       <img class="content-container__image" [src]="item.image" alt="Product Image" />
       <h3>{{ item.title }}</h3>
     </div>
