@@ -12,6 +12,7 @@ export class ContentComponent implements OnInit {
   productFilter: any[] = [];
   inputValue: string = '';
   selectedItems: string[] = [];
+  count: number = 0;
 
   constructor(private dataService: DataService) {
     this.data = this.dataService.data;
@@ -25,6 +26,9 @@ export class ContentComponent implements OnInit {
     this.dataService.inputValue$.subscribe(value => {
       this.inputValue = value;
       this.filterData();
+    });
+    this.dataService.basketCount$.subscribe(count => {
+      this.count = count;
     });
 
     this.filterData();
@@ -50,6 +54,7 @@ export class ContentComponent implements OnInit {
   addToBasket(productId: string) {
     if (!this.selectedItems.includes(productId)) {
       this.selectedItems.push(productId);
+      this.dataService.incrementCount();
     }
   }
 
@@ -57,6 +62,7 @@ export class ContentComponent implements OnInit {
     const index = this.selectedItems.indexOf(productId);
     if (index !== -1) {
       this.selectedItems.splice(index, 1);
+      this.dataService.decrementCount();
     }
   }
 

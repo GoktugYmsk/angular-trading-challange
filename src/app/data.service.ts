@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
+
   data = [
     {
       "id": 1,
@@ -247,27 +248,42 @@ export class DataService {
       }
     }
   ]
+  
   private selectedCategories = new Subject<string>();
   private inputValueSubject = new Subject<string>();
+  private basketCountSubject = new Subject<number>();
+
   public inputValue$ = this.inputValueSubject.asObservable();
-
   public categories$ = this.selectedCategories.asObservable();
+  public basketCount$ = this.basketCountSubject.asObservable();
 
+  private count: number = 0;
 
-  constructor() { }
-
+  constructor() {}
 
   get filteredData(): any[] {
     return this.data;
   }
 
-
   setInputValue(value: string) {
     this.inputValueSubject.next(value);
   }
 
-
   onCategoryClick(optionProduct: any) {
-    this.selectedCategories.next(optionProduct)
+    this.selectedCategories.next(optionProduct);
+  }
+
+  getCount(): number {
+    return this.count;
+  }
+
+  incrementCount() {
+    this.count++;
+    this.basketCountSubject.next(this.count);
+  }
+
+  decrementCount() {
+    this.count--;
+    this.basketCountSubject.next(this.count);
   }
 }
