@@ -8,8 +8,8 @@ import { DataService } from '../data.service';
 })
 export class HeaderComponent {
   logo = 'https://uploads-ssl.webflow.com/605c9d764f1ef938a009ac98/61e01bfbdd8632a72962edc2_Pinsoft_Yatay_Logo_mavi-for%20animation.svg';
-  searchInput: string = ''; 
-  basketCount: number = 0 ;
+  searchInput: string = '';
+  basketCount: number = 0;
 
   constructor(private dataService: DataService) { }
 
@@ -18,8 +18,13 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
-    this.dataService.basketCount$.subscribe(count =>{
+    this.dataService.basketCount$.subscribe(count => {
       this.basketCount = count
     })
   }
+
+  openBasket(active: boolean) {
+    this.dataService.setActiveValue(active);
+  }
+
 }

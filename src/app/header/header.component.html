@@ -1,8 +1,8 @@
 <div class="header-container">
   <div class="container-header__top">
-    <p>Sell ​​on Pinsoft</p>
+    <p>Sell on Pinsoft</p>
     <p>Free Shipping for Shopping Over 100 TL!</p>
-    <div class="header-container__top-rigth__info">
+    <div class="header-container__top-right__info">
       <ul>
         <li>Campaigns</li>
         <li>Order Tracking</li>
@@ -16,12 +16,11 @@
     <div class="header-container__input-group">
       <input type="text" [(ngModel)]="searchInput" (input)="onInputChange()" placeholder="Search..."
         aria-label="Dollar amount (with dot and two decimal places)" />
-      <span class="input-group-text">
-      </span>
+      <span class="input-group-text"></span>
     </div>
     <div class="header-container__basket-group">
-      <div class="header__basket">
-        <p class="header__count"> {{basketCount}} </p>
+      <div class="header__basket" (click)="openBasket(true)">
+        <p class="header__count">{{basketCount}}</p>
         <i class="fa-solid fa-basket-shopping header__icon"></i>
       </div>
     </div>

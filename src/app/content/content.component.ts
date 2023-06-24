@@ -53,10 +53,16 @@ export class ContentComponent implements OnInit {
 
   addToBasket(productId: string) {
     if (!this.selectedItems.includes(productId)) {
-      this.selectedItems.push(productId);
+      this.selectedItems = [...this.selectedItems, productId];
       this.dataService.incrementCount();
+  
+      const selectedProduct = this.data.find(item => item.id === productId);
+      if (selectedProduct) {
+        this.dataService.setProductList(selectedProduct);
+      }
     }
-  }
+  }  
+
 
   removeFromBasket(productId: string) {
     const index = this.selectedItems.indexOf(productId);
@@ -64,6 +70,7 @@ export class ContentComponent implements OnInit {
       this.selectedItems.splice(index, 1);
       this.dataService.decrementCount();
     }
+
   }
 
   isItemInBasket(productId: string): boolean {

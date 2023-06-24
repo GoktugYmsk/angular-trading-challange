@@ -1,21 +1,28 @@
-<div class="container-basket">
-    <div class="container-basket__top">
-    </div>
-    <div class="container-basket__box">
-        <div class="basket-modal__box">
-            <div class="basket-modal__list">
-              <div class="basket-modal__products">
-                <div class="basket-modal__products-image">
-                </div>
-                <div class="basket-modal__products-info">
-                </div>
-              </div>
+<div *ngIf="activeValue" class="container-basket">
+  <div class="container-basket__top">
+  </div>
+  <div class="container-basket__box">
+    <div class="basket-modal__box">
+      <div class="basket-modal__list">
+        <div class="basket-item" *ngFor="let item of basketProduct">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.price }}</p>
+          <!-- Diğer ürün bilgilerini buraya ekleyebilirsiniz -->
+
+
+          <div class="basket-modal__products">
+            <div class="basket-modal__products-image">
+              <img [src]="item.image" alt="Product Image" class="basket-item__image" />
             </div>
+            <div class="basket-modal__products-info">
+            </div>
+          </div>
         </div>
-        <p class="basket-empty">Your cart is empty</p>
+      </div>
+      <p class="basket-empty">Your cart is empty</p>
     </div>
     <div class="basket__total-price">
       <h3>Subtotal:</h3>
     </div>
   </div>
-  
+</div>
