@@ -19,14 +19,24 @@ export class ContentComponent implements OnInit {
   ngOnInit() {
     this.dataService.categories$.subscribe(categories => {
       this.categories = categories;
+      this.filterData();
     });
     this.dataService.inputValue$.subscribe(value => {
       this.inputValue = value;
-      this.filterData(); 
+      this.filterData();
     });
+
+
+    this.filterData();
   }
 
   filterData() {
+    if (!this.categories && !this.inputValue) {
+
+      this.productFilter = this.data;
+      return;
+    }
+
     this.productFilter = this.data.filter((item) => {
       if (this.categories && item.category !== this.categories) {
         return false;
