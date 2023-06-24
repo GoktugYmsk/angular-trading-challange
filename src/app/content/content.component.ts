@@ -69,4 +69,15 @@ export class ContentComponent implements OnInit {
   isItemInBasket(productId: string): boolean {
     return this.selectedItems.includes(productId);
   }
+
+
+  showButtons(item: any) {
+    item.showButtons = true;
+  }
+
+  hideButtons() {
+    this.productFilter.forEach((item) => {
+      item.showButtons = false;
+    });
+  }
 }
