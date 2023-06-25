@@ -16,16 +16,15 @@
 .container-header__top p {
     font-size: 12px;
     margin-top: 10px;
+    margin-right: 70px;
 }
 
-
-.header-container__top-rigth__info ul {
-    display: flex;
+.header-container__top-right__info ul {
+    display: flex !important;
     margin-top: 10px !important;
-
 }
 
-.header-container__top-rigth__info li {
+.header-container__top-right__info li {
     margin-left: 30px;
     font-size: 12px;
 }
@@ -55,7 +54,6 @@
 }
 
 .header-container__input-group .input-group-text {
-
     cursor: pointer;
 }
 

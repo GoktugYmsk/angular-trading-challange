@@ -3,7 +3,10 @@
     align-items: center !important;
     justify-content: center !important;
     margin-left: 20px;
-    background: red;
+    border: 2px dashed ;
+    border-top: none;
+    border-left: none;
+    border-bottom: none;
 }
 .container-sideBar__box{
     display: flex;

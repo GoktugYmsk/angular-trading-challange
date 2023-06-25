@@ -1,12 +1,22 @@
 <div class="content-container">
-  <div class="content-container__box">
-    <div class="content-container__box-list" *ngFor="let item of productFilter" 
-         (mouseenter)="showButtons(item)" 
-         (mouseleave)="hideButtons()">
-      <img class="content-container__image" [src]="item.image" alt="Product Image" />
-      <h3>{{ item.title }}</h3>
-      <button (click)="addToBasket(item.id)" *ngIf="item.showButtons && !isItemInBasket(item.id)">Add to basket</button>
-      <button (click)="removeFromBasket(item.id)" *ngIf="item.showButtons && isItemInBasket(item.id)">Remove from basket</button>      
+  <div class="product-list">
+    <div class="content-container__box-list" *ngFor="let item of productFilter" (mouseenter)="showButtons(item)"
+      (mouseleave)="hideButtons()">
+      <div class="product-box">
+        <div class="product-box__topInfo">
+          <img [src]="item.image" alt="Product Image" />
+          <p>{{ item.title }}</p>
+          <p class="product-box__topInfo-price"> {{item.price}} $ </p>
+        </div>
+      </div>
+      <button class=" product-add-button" (click)="addToBasket(item.id)"
+        *ngIf="item.showButtons && !isItemInBasket(item.id)">
+        <p>Add to basket</p>
+      </button>
+      <button class="product-remove-button" (click)="removeFromBasket(item.id)"
+        *ngIf="item.showButtons && isItemInBasket(item.id)">
+      <p>Remove from basket</p>
+      </button>
     </div>
   </div>
 </div>
