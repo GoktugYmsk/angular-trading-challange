@@ -26,5 +26,6 @@ export class HeaderComponent {
   openBasket(active: boolean) {
     this.dataService.setActiveValue(active);
   }
+  
 
 }

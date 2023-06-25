@@ -65,28 +65,29 @@ export class ContentComponent implements OnInit {
           return; // Fonksiyondan çıkıyoruz
         }
       }
-  
+
       // Eğer seçilen ürün daha önce sepete eklenmemişse, yeni bir ürün olarak ekliyoruz
       const newProduct = { ...selectedProduct, quantity: 1 };
-      this.basketProduct.push(this.selectedItems); // Yeni ürünü basketProduct dizisine ekliyoruz
-      this.dataService.setProductUpdate(this.selectedItems)
-      this.selectedItems.push(selectedProduct); // Seçilen ürünü selectedItems dizisine ekliyoruz
+      this.basketProduct.push(newProduct); // Yeni ürünü basketProduct dizisine ekliyoruz
+      this.dataService.setProductUpdate(this.basketProduct);
+      this.selectedItems.push(productId); // Seçilen ürünün ID'sini selectedItems dizisine ekliyoruz
       this.dataService.incrementCount(); // Toplam ürün sayısını güncelliyoruz
     }
-    
   }
-  
-  
-
 
   removeFromBasket(productId: string) {
     const index = this.selectedItems.indexOf(productId);
     if (index !== -1) {
       this.selectedItems.splice(index, 1);
       this.dataService.decrementCount();
+      const removedProductIndex = this.basketProduct.findIndex(item => item.id === productId);
+      if (removedProductIndex !== -1) {
+        this.basketProduct.splice(removedProductIndex, 1);
+        this.dataService.setProductUpdate(this.basketProduct);
+      }
     }
-
   }
+
 
   isItemInBasket(productId: string): boolean {
     return this.selectedItems.includes(productId);

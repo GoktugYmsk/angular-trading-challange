@@ -4,9 +4,11 @@
   <div class="container-basket__box">
     <div class="basket-modal__box">
       <div class="basket-modal__list">
+        <div *ngIf="products$.length === 0" class="basket-empty">
+          Your cart is empty
+        </div>
         <div class="basket-item" *ngFor="let item of products$">
           <h3>{{ item.title }}</h3>
-          <p>{{ item.price }}</p>
           <div class="basket-modal__products">
             <div class="basket-modal__products-image">
               <img [src]="item.image" alt="Product Image" class="basket-item__image" />
@@ -16,7 +18,6 @@
           </div>
         </div>
       </div>
-      <p class="basket-empty">Your cart is empty</p>
     </div>
     <div class="basket__total-price">
       <h3>Subtotal:</h3>
