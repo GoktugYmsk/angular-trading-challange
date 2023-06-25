@@ -9,26 +9,24 @@ import { DataService } from '../data.service';
 export class BasketComponent implements OnInit {
   @Input() data: any[] = [];
 
-  activeValue: boolean = false;
-  basketProduct: any[] = [];
+  activeValue$: boolean = false;
+  products$: any[] = []
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.dataService.activeValue$.subscribe(basketActive => {
-      this.activeValue = basketActive;
-      console.log(this.activeValue);
+      this.activeValue$ = basketActive;
     });
-
-    this.dataService.basketProduct$.subscribe(productItem => {
-      this.basketProduct = productItem;
-      console.log('basket', this.basketProduct);
-    });
-  }
+    this.dataService.products$.subscribe(showProduct => {
+      this.products$ = showProduct
+      console.log('basket', this.products$)
+    })
+    }
 
   @HostListener('document:keydown.escape')
-  handleEscapeKey() {
-    this.activeValue = false;
-    console.log(this.activeValue);
+    handleEscapeKey() {
+      this.activeValue$ = false;
+      console.log(this.activeValue$);
+    }
   }
-}

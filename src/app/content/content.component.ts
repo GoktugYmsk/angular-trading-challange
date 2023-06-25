@@ -13,6 +13,7 @@ export class ContentComponent implements OnInit {
   inputValue: string = '';
   selectedItems: string[] = [];
   count: number = 0;
+  basketProduct: any[] = []
 
   constructor(private dataService: DataService) {
     this.data = this.dataService.data;
@@ -52,16 +53,30 @@ export class ContentComponent implements OnInit {
   }
 
   addToBasket(productId: string) {
-    if (!this.selectedItems.includes(productId)) {
-      this.selectedItems = [...this.selectedItems, productId];
-      this.dataService.incrementCount();
-  
-      const selectedProduct = this.data.find(item => item.id === productId);
-      if (selectedProduct) {
-        this.dataService.setProductList(selectedProduct);
+    const selectedProduct = this.data.find(item => item.id === productId);
+    if (selectedProduct) {
+      for (let i = 0; i < this.selectedItems.length; i++) {
+        const existingProduct = this.data.find(item => item.id === this.selectedItems[i]);
+        if (existingProduct && existingProduct.id === productId) {
+          // Eğer seçilen ürün zaten sepete eklenmişse, burada istediğiniz işlemi yapabilirsiniz
+          // Örneğin, ürünün miktarını artırabilirsiniz
+          existingProduct.quantity++; // Örnek olarak, ürün miktarını bir artırıyoruz
+          this.dataService.incrementCount(); // Toplam ürün sayısını güncelliyoruz
+          return; // Fonksiyondan çıkıyoruz
+        }
       }
+  
+      // Eğer seçilen ürün daha önce sepete eklenmemişse, yeni bir ürün olarak ekliyoruz
+      const newProduct = { ...selectedProduct, quantity: 1 };
+      this.basketProduct.push(this.selectedItems); // Yeni ürünü basketProduct dizisine ekliyoruz
+      this.dataService.setProductUpdate(this.selectedItems)
+      this.selectedItems.push(selectedProduct); // Seçilen ürünü selectedItems dizisine ekliyoruz
+      this.dataService.incrementCount(); // Toplam ürün sayısını güncelliyoruz
     }
-  }  
+    
+  }
+  
+  
 
 
   removeFromBasket(productId: string) {

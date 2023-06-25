@@ -1,15 +1,12 @@
-<div *ngIf="activeValue" class="container-basket">
+<div *ngIf="activeValue$" class="container-basket">
   <div class="container-basket__top">
   </div>
   <div class="container-basket__box">
     <div class="basket-modal__box">
       <div class="basket-modal__list">
-        <div class="basket-item" *ngFor="let item of basketProduct">
+        <div class="basket-item" *ngFor="let item of products$">
           <h3>{{ item.title }}</h3>
           <p>{{ item.price }}</p>
-          <!-- Diğer ürün bilgilerini buraya ekleyebilirsiniz -->
-
-
           <div class="basket-modal__products">
             <div class="basket-modal__products-image">
               <img [src]="item.image" alt="Product Image" class="basket-item__image" />

@@ -253,13 +253,13 @@ export class DataService {
   private inputValueSubject = new Subject<string>();
   private basketCountSubject = new Subject<number>();
   private activeValue = new BehaviorSubject<boolean>(false);
-  private addedProduct = new Subject<any>()
+  private setProducts = new Subject<any>()
 
   public activeValue$ = this.activeValue.asObservable();
   public inputValue$ = this.inputValueSubject.asObservable();
   public categories$ = this.selectedCategories.asObservable();
   public basketCount$ = this.basketCountSubject.asObservable();
-  public basketProduct$ = this.addedProduct.asObservable()
+  public products$ = this.setProducts.asObservable() 
 
   private count: number = 0;
 
@@ -294,13 +294,10 @@ export class DataService {
   setActiveValue(active: boolean) {
     this.activeValue.next(active);
   }
-
-  setProductList(productlist: any)
-  {
-    this.addedProduct.next(productlist)
-  }
-
   
+  setProductUpdate(products$: any){
+    this.setProducts.next(products$)
+  }
 
 
 }
