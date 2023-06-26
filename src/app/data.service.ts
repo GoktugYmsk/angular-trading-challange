@@ -252,7 +252,7 @@ export class DataService {
   private selectedCategories = new Subject<string>();
   private inputValueSubject = new Subject<string>();
   private basketCountSubject = new Subject<number>();
-  private activeValue = new BehaviorSubject<boolean>(false);
+  private activeValue = new Subject<any>()
   private setProducts = new Subject<any>()
 
   public activeValue$ = this.activeValue.asObservable();

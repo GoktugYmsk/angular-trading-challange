@@ -16,18 +16,19 @@
               <p>{{ item.title }}</p>
               <p>Adet: {{ item.count || 1 }}</p>
               <p> {{ item.price }} </p>
+              <input type="number" [(ngModel)]="item.count" (ngModelChange)="calculateTotalPrice()" />
               <div *ngIf="item.count > item.rating.count" class="error-message">
                 <p class="error-message__p">Quantity entered exceeds stock quantity!</p>
               </div>
-              <input type="number" [(ngModel)]="item.count" />
             </div>
+            <i class="fa-solid fa-trash header__icon"></i> 
           </div>
-
         </div>
       </div>
     </div>
     <div class="basket__total-price">
-      <h3>Subtotal:</h3>
+      <h3>Subtotal: </h3>
+      <h3>{{ calculateTotalPrice() }} $</h3>
     </div>
   </div>
 </div>

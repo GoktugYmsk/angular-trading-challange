@@ -9,8 +9,9 @@ import { DataService } from '../data.service';
 export class BasketComponent implements OnInit {
   @Input() data: any[] = [];
 
-  activeValue$: boolean = false;
-  products$: any[] = []
+  activeValue$: any
+  products$: any[] = [];
+  totalPrice: number = 0;
 
   constructor(private dataService: DataService) { }
 
@@ -19,14 +20,24 @@ export class BasketComponent implements OnInit {
       this.activeValue$ = basketActive;
     });
     this.dataService.products$.subscribe(showProduct => {
-      this.products$ = showProduct
-      console.log('basket', this.products$)
-    })
+      this.products$ = showProduct;
+      this.calculateTotalPrice();
+      console.log('basket', this.products$);
+    });
+  }
+
+  calculateTotalPrice() {
+    this.totalPrice = 0;
+    for (const item of this.products$) {
+      this.totalPrice += (item.price * (item.count || 1));
     }
+    this.totalPrice = parseFloat(this.totalPrice.toFixed(2)); 
+    return this.totalPrice;
+  }
 
   @HostListener('document:keydown.escape')
-    handleEscapeKey() {
-      this.activeValue$ = false;
-      console.log(this.activeValue$);
-    }
+  handleEscapeKey() {
+    this.activeValue$ = false;
+    console.log(this.activeValue$);
   }
+}

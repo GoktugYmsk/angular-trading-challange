@@ -4,7 +4,7 @@ import { DataService } from '../data.service';
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
-  styleUrls: ['./content.component.css','./content.component.scss']
+  styleUrls: ['./content.component.css', './content.component.scss']
 })
 export class ContentComponent implements OnInit {
   @Input() data: any[] = [];
@@ -14,6 +14,8 @@ export class ContentComponent implements OnInit {
   selectedItems: string[] = [];
   count: number = 0;
   basketProduct: any[] = []
+  activeValue$: any;
+
 
   constructor(private dataService: DataService) {
     this.data = this.dataService.data;
@@ -31,6 +33,10 @@ export class ContentComponent implements OnInit {
     this.dataService.basketCount$.subscribe(count => {
       this.count = count;
     });
+    this.dataService.activeValue$.subscribe(basketActive => {
+      this.activeValue$ = basketActive;
+    });
+    console.log('Basket Active ?', this.activeValue$)
 
     this.filterData();
   }
