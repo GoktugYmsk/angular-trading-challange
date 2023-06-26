@@ -9,7 +9,7 @@ import { DataService } from '../data.service';
 export class BasketComponent implements OnInit {
   @Input() data: any[] = [];
 
-  activeValue$: any
+  activeValue$: any;
   products$: any[] = [];
   totalPrice: number = 0;
 
@@ -31,8 +31,16 @@ export class BasketComponent implements OnInit {
     for (const item of this.products$) {
       this.totalPrice += (item.price * (item.count || 1));
     }
-    this.totalPrice = parseFloat(this.totalPrice.toFixed(2)); 
+    this.totalPrice = parseFloat(this.totalPrice.toFixed(2)); // Toplam fiyatı 2 basamağa sınırlama
     return this.totalPrice;
+  }
+
+  removeFromBasket(item: any) {
+    const index = this.products$.indexOf(item);
+    if (index !== -1) {
+      this.products$.splice(index, 1);
+      this.calculateTotalPrice();
+    }
   }
 
   @HostListener('document:keydown.escape')
