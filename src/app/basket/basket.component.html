@@ -8,14 +8,21 @@
           Your cart is empty
         </div>
         <div class="basket-item" *ngFor="let item of products$">
-          <h3>{{ item.title }}</h3>
           <div class="basket-modal__products">
             <div class="basket-modal__products-image">
               <img [src]="item.image" alt="Product Image" class="basket-item__image" />
             </div>
             <div class="basket-modal__products-info">
+              <p>{{ item.title }}</p>
+              <p>Adet: {{ item.count || 1 }}</p>
+              <p> {{ item.price }} </p>
+              <div *ngIf="item.count > item.rating.count" class="error-message">
+                <p class="error-message__p">Quantity entered exceeds stock quantity!</p>
+              </div>
+              <input type="number" [(ngModel)]="item.count" />
             </div>
           </div>
+
         </div>
       </div>
     </div>
