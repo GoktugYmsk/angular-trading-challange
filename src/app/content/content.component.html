@@ -6,8 +6,8 @@
         <div class="product-box__topInfo">
           <img [src]="item.image" alt="Product Image" />
           <p>{{ item.title }}</p>
+          <p> last {{item.rating.count}} pieces</p>
           <p class="product-box__topInfo-price"> {{item.price}} $ </p>
-          <p> son {{item.rating.count}} </p>
         </div>
       </div>
       <button class=" product-add-button" (click)="addToBasket(item.id)"
