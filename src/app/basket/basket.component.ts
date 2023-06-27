@@ -12,6 +12,8 @@ export class BasketComponent implements OnInit {
   activeValue$: any;
   products$: any[] = [];
   totalPrice: number = 0;
+  basketProduct: any[] = []
+  
 
   constructor(private dataService: DataService) { }
 
@@ -31,7 +33,7 @@ export class BasketComponent implements OnInit {
     for (const item of this.products$) {
       this.totalPrice += (item.price * (item.count || 1));
     }
-    this.totalPrice = parseFloat(this.totalPrice.toFixed(2)); // Toplam fiyatı 2 basamağa sınırlama
+    this.totalPrice = parseFloat(this.totalPrice.toFixed(2)); 
     return this.totalPrice;
   }
 
@@ -40,6 +42,8 @@ export class BasketComponent implements OnInit {
     if (index !== -1) {
       this.products$.splice(index, 1);
       this.calculateTotalPrice();
+      this.dataService.decrementCount()
+      console.log('baskettaki product',this.products$)
     }
   }
 

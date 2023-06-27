@@ -15,7 +15,7 @@ export class ContentComponent implements OnInit {
   count: number = 0;
   basketProduct: any[] = []
   activeValue$: any;
-
+  product$: any[] = []
 
   constructor(private dataService: DataService) {
     this.data = this.dataService.data;
@@ -30,15 +30,14 @@ export class ContentComponent implements OnInit {
       this.inputValue = value;
       this.filterData();
     });
-    this.dataService.basketCount$.subscribe(count => {
-      this.count = count;
-    });
     this.dataService.activeValue$.subscribe(basketActive => {
       this.activeValue$ = basketActive;
     });
-    console.log('Basket Active ?', this.activeValue$)
-
+    this.dataService.products$.subscribe(allProduct => {
+      this.product$ = allProduct
+    })
     this.filterData();
+    console.log('contentteki product', this.product$)
   }
 
   filterData() {
@@ -64,14 +63,12 @@ export class ContentComponent implements OnInit {
       for (let i = 0; i < this.selectedItems.length; i++) {
         const existingProduct = this.data.find(item => item.id === this.selectedItems[i]);
         if (existingProduct && existingProduct.id === productId) {
-          // Eğer seçilen ürün zaten sepete eklenmişse, burada istediğiniz işlemi yapabilirsiniz
-          // Örneğin, ürünün miktarını artırabilirsiniz
           existingProduct.quantity++; // Örnek olarak, ürün miktarını bir artırıyoruz
           this.dataService.incrementCount(); // Toplam ürün sayısını güncelliyoruz
           return; // Fonksiyondan çıkıyoruz
         }
-      }
 
+      }
       // Eğer seçilen ürün daha önce sepete eklenmemişse, yeni bir ürün olarak ekliyoruz
       const newProduct = { ...selectedProduct, quantity: 1 };
       this.basketProduct.push(newProduct); // Yeni ürünü basketProduct dizisine ekliyoruz
@@ -79,6 +76,7 @@ export class ContentComponent implements OnInit {
       this.selectedItems.push(productId); // Seçilen ürünün ID'sini selectedItems dizisine ekliyoruz
       this.dataService.incrementCount(); // Toplam ürün sayısını güncelliyoruz
     }
+    
   }
 
   removeFromBasket(productId: string) {
@@ -91,14 +89,13 @@ export class ContentComponent implements OnInit {
         this.basketProduct.splice(removedProductIndex, 1);
         this.dataService.setProductUpdate(this.basketProduct);
       }
+      console.log('selectedItems', productId)
     }
   }
-
-
   isItemInBasket(productId: string): boolean {
-    return this.selectedItems.includes(productId);
+    const selectedProduct = this.product$.find(item => item.id === productId);
+    return selectedProduct !== undefined;
   }
-
 
   showButtons(item: any) {
     item.showButtons = true;

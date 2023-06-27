@@ -297,6 +297,7 @@ export class DataService {
   
   setProductUpdate(products$: any){
     this.setProducts.next(products$)
+    console.log('servicete"ki product$',products$)
   }
 
 
