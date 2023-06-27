@@ -58,26 +58,23 @@ export class ContentComponent implements OnInit {
   }
 
   addToBasket(productId: string) {
-    const selectedProduct = this.data.find(item => item.id === productId);
+    const selectedProduct = this.productFilter.find(item => item.id === productId);
     if (selectedProduct) {
-      for (let i = 0; i < this.selectedItems.length; i++) {
-        const existingProduct = this.data.find(item => item.id === this.selectedItems[i]);
-        if (existingProduct && existingProduct.id === productId) {
-          existingProduct.quantity++; // Örnek olarak, ürün miktarını bir artırıyoruz
-          this.dataService.incrementCount(); // Toplam ürün sayısını güncelliyoruz
-          return; // Fonksiyondan çıkıyoruz
-        }
-
+      const existingProduct = this.basketProduct.find(item => item.id === productId);
+      if (existingProduct) {
+        existingProduct.quantity++; // Ürün miktarını bir artırıyoruz
+        this.dataService.incrementCount(); // Toplam ürün sayısını güncelliyoruz
+      } else {
+        // Eğer seçilen ürün daha önce sepete eklenmemişse, yeni bir ürün olarak ekliyoruz
+        const newProduct = { ...selectedProduct, quantity: 1 };
+        this.basketProduct.push(newProduct); // Yeni ürünü basketProduct dizisine ekliyoruz
+        this.dataService.setProductUpdate(this.basketProduct);
+        this.selectedItems.push(productId); // Seçilen ürünün ID'sini selectedItems dizisine ekliyoruz
+        this.dataService.incrementCount(); // Toplam ürün sayısını güncelliyoruz
       }
-      // Eğer seçilen ürün daha önce sepete eklenmemişse, yeni bir ürün olarak ekliyoruz
-      const newProduct = { ...selectedProduct, quantity: 1 };
-      this.basketProduct.push(newProduct); // Yeni ürünü basketProduct dizisine ekliyoruz
-      this.dataService.setProductUpdate(this.basketProduct);
-      this.selectedItems.push(productId); // Seçilen ürünün ID'sini selectedItems dizisine ekliyoruz
-      this.dataService.incrementCount(); // Toplam ürün sayısını güncelliyoruz
     }
-    
   }
+  
 
   removeFromBasket(productId: string) {
     const index = this.selectedItems.indexOf(productId);
@@ -94,7 +91,7 @@ export class ContentComponent implements OnInit {
   }
   isItemInBasket(productId: string): boolean {
     const selectedProduct = this.product$.find(item => item.id === productId);
-    return selectedProduct !== undefined;
+    return selectedProduct 
   }
 
   showButtons(item: any) {
