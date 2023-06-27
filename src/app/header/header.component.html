@@ -14,9 +14,11 @@
   <div class="header-container__lower">
     <img [src]="logo" />
     <div class="header-container__input-group">
-      <input type="text" [(ngModel)]="searchInput" (input)="onInputChange()" placeholder="Search..."
+      <input #searchInputField type="text" [(ngModel)]="searchInput" (input)="onInputChange()" placeholder="Search..."
         aria-label="Dollar amount (with dot and two decimal places)" />
-      <span class="input-group-text"></span>
+      <span class="input-group-text">
+        <i class="fas fa-search" (click)="focusSearchInput()"></i>
+      </span>
     </div>
     <div class="header-container__basket-group">
       <div class="header__basket" (click)="openBasket(true)">
