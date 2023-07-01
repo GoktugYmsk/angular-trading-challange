@@ -62,19 +62,17 @@ export class ContentComponent implements OnInit {
     if (selectedProduct) {
       const existingProduct = this.basketProduct.find(item => item.id === productId);
       if (existingProduct) {
-        existingProduct.quantity++; // Ürün miktarını bir artırıyoruz
-        this.dataService.incrementCount(); // Toplam ürün sayısını güncelliyoruz
+        existingProduct.quantity++;
+        this.dataService.incrementCount();
       } else {
-        // Eğer seçilen ürün daha önce sepete eklenmemişse, yeni bir ürün olarak ekliyoruz
         const newProduct = { ...selectedProduct, quantity: 1 };
-        this.basketProduct.push(newProduct); // Yeni ürünü basketProduct dizisine ekliyoruz
+        this.basketProduct.push(newProduct);
         this.dataService.setProductUpdate(this.basketProduct);
-        this.selectedItems.push(productId); // Seçilen ürünün ID'sini selectedItems dizisine ekliyoruz
-        this.dataService.incrementCount(); // Toplam ürün sayısını güncelliyoruz
+        this.selectedItems.push(productId);
+        this.dataService.incrementCount();
       }
     }
   }
-  
 
   removeFromBasket(productId: string) {
     const index = this.selectedItems.indexOf(productId);
@@ -91,7 +89,7 @@ export class ContentComponent implements OnInit {
   }
   isItemInBasket(productId: string): boolean {
     const selectedProduct = this.product$.find(item => item.id === productId);
-    return selectedProduct 
+    return selectedProduct
   }
 
   showButtons(item: any) {

@@ -49,7 +49,7 @@ export class BasketComponent implements OnInit {
 
   updateItemCount(item: any) {
     if (item.count < 1) {
-      item.count = 1; // Minimum değer olarak 1'i kabul ediyoruz
+      item.count = 1; 
     }
     this.calculateTotalPrice();
   }  
@@ -57,6 +57,6 @@ export class BasketComponent implements OnInit {
   @HostListener('document:keydown.escape')
   handleEscapeKey() {
     this.activeValue$ = false;
-    console.log(this.activeValue$);
+    console.log('basket active',this.activeValue$);
   }
 }

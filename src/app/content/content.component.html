@@ -1,4 +1,4 @@
-<div class="content-container">
+<div [ngClass]="activeValue$ ? 'content-container-active' : 'content-container'">
   <div class="product-list">
     <div class="content-container__box-list" *ngFor="let item of productFilter" (mouseenter)="showButtons(item)"
       (mouseleave)="hideButtons()">
