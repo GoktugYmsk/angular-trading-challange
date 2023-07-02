@@ -293,12 +293,10 @@ export class DataService {
 
   setActiveValue(active: boolean) {
     this.activeValue.next(active);
-    console.log('data active',this.activeValue$)
   }
   
   setProductUpdate(products$: any){
     this.setProducts.next(products$)
-    console.log('servicete"ki product$',products$)
   }
 
 

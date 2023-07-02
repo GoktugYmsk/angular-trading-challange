@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, OnDestroy } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -8,12 +8,14 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnDestroy {
+export class HeaderComponent implements OnInit {
   @ViewChild('searchInputField', { static: false }) searchInputField!: ElementRef;
   logo = 'https://uploads-ssl.webflow.com/605c9d764f1ef938a009ac98/61e01bfbdd8632a72962edc2_Pinsoft_Yatay_Logo_mavi-for%20animation.svg';
   searchInput: string = '';
   basketCount: number = 0;
   active: any;
+  isActive: any;
+  activeValue$: any;
 
   private destroy$: Subject<void> = new Subject<void>();
 
@@ -26,11 +28,9 @@ export class HeaderComponent implements OnDestroy {
   ngOnInit() {
     this.dataService.basketCount$.subscribe(count => {
       this.basketCount = count;
-    });
-
-    this.dataService.activeValue$.pipe(takeUntil(this.destroy$)).subscribe(basketActive => {
-      this.active = basketActive;
-      console.log('header-active-control', this.active);
+    })
+    this.dataService.activeValue$.subscribe(basket => {
+      this.isActive = basket;
     });
   }
 
@@ -41,7 +41,6 @@ export class HeaderComponent implements OnDestroy {
 
   openBasket(active: boolean) {
     this.dataService.setActiveValue(active);
-    console.log('header Acitve', active);
   }
 
   focusSearchInput() {

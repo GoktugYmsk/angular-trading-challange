@@ -87,6 +87,7 @@
     cursor: pointer;
     font-size: 30px;
 }
+
 .header-container-active{
     opacity: 0.2 !important;
 }

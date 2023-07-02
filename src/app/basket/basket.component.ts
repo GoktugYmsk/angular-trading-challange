@@ -13,7 +13,6 @@ export class BasketComponent implements OnInit {
   products$: any[] = [];
   totalPrice: number = 0;
   basketProduct: any[] = []
-  
 
   constructor(private dataService: DataService) { }
 
@@ -24,7 +23,6 @@ export class BasketComponent implements OnInit {
     this.dataService.products$.subscribe(showProduct => {
       this.products$ = showProduct;
       this.calculateTotalPrice();
-      console.log('basket', this.products$);
     });
   }
 
@@ -33,7 +31,7 @@ export class BasketComponent implements OnInit {
     for (const item of this.products$) {
       this.totalPrice += (item.price * (item.count || 1));
     }
-    this.totalPrice = parseFloat(this.totalPrice.toFixed(2)); 
+    this.totalPrice = parseFloat(this.totalPrice.toFixed(2));
     return this.totalPrice;
   }
 
@@ -43,20 +41,18 @@ export class BasketComponent implements OnInit {
       this.products$.splice(index, 1);
       this.calculateTotalPrice();
       this.dataService.decrementCount()
-      console.log('baskettaki product',this.products$)
     }
   }
 
   updateItemCount(item: any) {
     if (item.count < 1) {
-      item.count = 1; 
+      item.count = 1;
     }
     this.calculateTotalPrice();
-  }  
+  }
 
   @HostListener('document:keydown.escape')
   handleEscapeKey() {
-    this.activeValue$ = false;
-    console.log('basket active',this.activeValue$);
+    this.dataService.setActiveValue(false)
   }
 }

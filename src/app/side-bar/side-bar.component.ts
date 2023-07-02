@@ -26,7 +26,6 @@ export class SideBarComponent {
   onCategoryClick(category: string): void {
     this.selectedCategory = category;
     this.dataService.onCategoryClick(category)
-    console.log(category);
   }
 
   get filteredData(): any[] {

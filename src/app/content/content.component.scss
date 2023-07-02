@@ -87,17 +87,95 @@
     }
 
 
-    .toast-container {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 9999;
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-end;
-
-    }
+   
 }
-.header-container-active{
+.content-container-active{
     opacity: 0.2 !important;
+    
+
+    .product-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+        padding: 10px;
+
+        .product-box {
+            display: flex;
+            cursor: pointer;
+            align-items: center !important;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 60px;
+            height: 380px;
+            padding: 20px;
+            margin-left: 20px;
+
+            &:hover {
+                box-shadow: 0 0 6px 2px rgb(58, 58, 58);
+            }
+
+            .product-box__topInfo {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 20px;
+
+                p {
+                    margin-top: 30px;
+                }
+
+                .product-box__topInfo-price {
+                    position: relative;
+                    left: 90px;
+                    bottom: 30px;
+                }
+            }
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            position: relative;
+            bottom: 50px;
+            left: 100px;
+            height: 40px;
+            color: white;
+            border-radius: 20px;
+            border-style: none;
+
+            p {
+                margin-left: 8px;
+                margin-right: 8px;
+                margin-top: 14px;
+                font-size: 14 px;
+            }
+        }
+
+
+        .product-add-button {
+            background: rgb(47, 117, 255);
+
+            &:hover {
+                background: rgb(65, 141, 255);
+                transform: scale(1.1);
+            }
+
+        }
+
+        .product-remove-button {
+            background: red;
+
+            &:hover {
+                background: rgb(255, 46, 46);
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    img {
+        width: 120px;
+        height: 120px;
+    }
+
+
 }
