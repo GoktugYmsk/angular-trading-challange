@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
   searchInput: string = '';
   basketCount: number = 0;
   active: any;
-  isActive: any;
   activeValue$: any;
 
   private destroy$: Subject<void> = new Subject<void>();
@@ -30,7 +29,7 @@ export class HeaderComponent implements OnInit {
       this.basketCount = count;
     })
     this.dataService.activeValue$.subscribe(basket => {
-      this.isActive = basket;
+      this.activeValue$ = basket;
     });
   }
 

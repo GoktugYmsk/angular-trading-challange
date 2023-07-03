@@ -1,4 +1,4 @@
-<div class="container-sideBar">
+<div [ngClass]="activeValue$ ? 'container-sideBar-active' : 'container-sideBar'">
   <div class="container-sideBar__box">
     <ng-container *ngFor="let item of data; let i = index">
       <p *ngIf="!isDuplicateCategory(item.category, i)" (click)="onCategoryClick(item.category)">

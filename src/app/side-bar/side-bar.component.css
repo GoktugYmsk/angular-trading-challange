@@ -17,3 +17,6 @@
     display: flex;
     cursor: pointer;
 }
+.container-sideBar-active{
+    opacity: 0.2;
+}

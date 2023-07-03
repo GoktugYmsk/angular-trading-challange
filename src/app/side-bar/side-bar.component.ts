@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 
 @Component({
@@ -6,9 +6,17 @@ import { DataService } from '../data.service';
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.css']
 })
-export class SideBarComponent {
+export class SideBarComponent implements OnInit {
   @Input() data: any[] = [];
+  activeValue$: any
   selectedCategory: string = '';
+
+
+  ngOnInit() {
+    this.dataService.activeValue$.subscribe(basketActive => {
+      this.activeValue$ = basketActive
+    })
+  }
 
   constructor(private dataService: DataService) {
     this.data = this.dataService.data;
