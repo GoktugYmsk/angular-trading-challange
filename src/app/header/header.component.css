@@ -91,3 +91,13 @@
 .header-container-active{
     opacity: 0.2 !important;
 }
+
+/*  Mediaquery */
+
+@media screen and (max-width: 540px) {
+
+    .header-container {
+        display: none;
+    }
+    
+}

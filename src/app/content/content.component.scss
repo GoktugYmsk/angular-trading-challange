@@ -179,3 +179,11 @@
 
 
 }
+
+// Mediaquery
+
+@media screen and (max-width:540px) {
+    .content-container{
+        display: none;
+    }
+}

@@ -3,20 +3,33 @@
     align-items: center !important;
     justify-content: center !important;
     margin-left: 20px;
-    border: 2px dashed ;
+    border: 2px dashed;
     border-top: none;
     border-left: none;
     border-bottom: none;
 }
-.container-sideBar__box{
+
+.container-sideBar__box {
     display: flex;
     flex-direction: column;
     width: 300px;
 }
-.container-sideBar p{
+
+.container-sideBar p {
     display: flex;
     cursor: pointer;
 }
-.container-sideBar-active{
+
+.container-sideBar-active {
     opacity: 0.2;
+}
+
+/*  Mediaquery */
+
+@media screen and (max-width: 540px) {
+
+    .container-sideBar {
+        display: none !important;
+    }
+
 }
